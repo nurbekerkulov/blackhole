@@ -1,5 +1,7 @@
 package kg.blackhole.blackhole.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.blackhole.blackhole.dto.ArtistDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * @author Nurbek
@@ -28,5 +31,11 @@ public class Artist extends AbstractEntity {
 
     @Column(name = "photo")
     private String photo;
+
+    @XmlTransient
+    @JsonIgnore
+    public ArtistDto getAsDto() {
+        return new ArtistDto(this);
+    }
 
 }

@@ -13,4 +13,6 @@ import java.util.UUID;
 @Repository
 public interface TrackRepository extends JpaRepository<Track, UUID> {
     List<Track> findAll();
+    List<Track> findTracksByGenre(UUID genre);
+    List<Track> findTracksByArtist(UUID artist);
 }

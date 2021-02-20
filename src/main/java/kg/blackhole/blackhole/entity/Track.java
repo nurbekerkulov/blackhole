@@ -1,11 +1,14 @@
 package kg.blackhole.blackhole.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.blackhole.blackhole.dto.TrackDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * @author Nurbek
@@ -31,5 +34,11 @@ public class Track extends AbstractEntity {
     @JoinColumn(name = "genre", nullable = false, referencedColumnName = "id")
     @ManyToOne
     private Genre genre;
+
+    @XmlTransient
+    @JsonIgnore
+    public TrackDto getAsDto() {
+        return new TrackDto(this);
+    }
 
 }
